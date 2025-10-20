@@ -2,4 +2,6 @@ Flask==3.0.3
 flask-mysqldb
 mysqlclient
 gunicorn
+
 Werkzeug
+reportlab
