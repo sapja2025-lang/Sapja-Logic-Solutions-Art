@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Factura - {{ fecha }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        /* small inline tweaks specific to factura layout */
+        .factura-meta { display:flex; justify-content:space-between; align-items:center; margin-bottom:18px; }
+        .empresa { font-weight:700; color:#046a4f; font-size:1.2rem }
+        .factura-info { text-align:right; font-size:0.95rem; color:#555 }
+        .factura-tabla td { text-align:left }
+        .factura-tabla td.price, .factura-tabla th.price { text-align:right }
+        .total { font-size:1.2rem; font-weight:bold; text-align:right; margin-top:15px; }
+        .volver { text-decoration:none; color:white; background:#046a4f; padding:8px 14px; border-radius:8px; }
+        .volver:hover { background:#034c38; }
+        body { font-family: Arial, sans-serif; margin:20px; background:#f8f8f8; }
+        .factura-container { background:white; padding:20px; border-radius:12px; box-shadow:0 0 10px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="factura-body">
+    <div class="factura-container">
+        <div class="factura-meta">
+            <div>
+                <div class="empresa">Roka Real - Tienda</div>
+            </div>
+            <div class="factura-info">
+                <div>Factura generada: <strong>{{ fecha }}</strong></div>
+                <div>Cliente: <strong>{{ session.get('usuario','Anónimo') }}</strong></div>
+            </div>
+        </div>
+
+        {% if productos %}
+        <div class="direccion">
+            <p><strong>Dirección de entrega:</strong> {{ direccion }}</p>
+            <p><strong>Método de pago:</strong> {{ session.get('metodo_pago', 'No especificado') }}</p>
+
+        </div>
+
+        <table class="factura-tabla" width="100%">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th class="price">Cantidad</th>
+                    <th class="price">Precio Unitario</th>
+                    <th class="price">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in productos %}
+                <tr>
+                    <td>{{ p.nombre_producto }}</td>
+                    <td class="price">{{ p.cantidad }}</td>
+                    <td class="price">${{ '%.2f' | format(p.precio | float) }}</td>
+                    <td class="price">${{ '%.2f' | format((p.precio | float) * (p.cantidad | float)) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="total">Total: ${{ '%.2f' | format(total | float) }}</div>
+        {% else %}
+        <p class="sin-productos">No hay productos en la factura.</p>
+        {% endif %}
+
+        <div class="text-end" style="margin-top:18px;">
+            <a href="{{ url_for('catalogo') }}" class="volver">Volver al catálogo</a>
+        </div>
+    </div>
+</body>
+</html>

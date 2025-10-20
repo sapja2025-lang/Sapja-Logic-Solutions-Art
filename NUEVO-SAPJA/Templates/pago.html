@@ -1,0 +1,112 @@
+{% extends 'base.html' %}
+
+{% block title %}Resumen de compra{% endblock %}
+
+{% block content %}
+
+<div class="carrito-view container py-4">
+    <h2 class="text-center mb-4">Resumen de la compra</h2>
+
+    {% if productos %}
+    <div style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        <table class="table tabla_carrito">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th class="text-center">Cantidad</th>
+                    <th>Precio</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in productos %}
+                <tr>
+                    <td>{{ p.nombre_producto }}</td>
+                    <td class="text-center">{{ p.cantidad }}</td>
+                    <td>${{ "{:,.0f}".format(p.precio) }}</td>
+                    <td>${{ "{:,.0f}".format(p.precio * p.cantidad) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Formulario para dirección y método de pago -->
+        <form method="POST" action="{{ url_for('pago') }}" class="mt-4">
+            <div class="row">
+                <!-- Dirección -->
+                <div class="col-md-6 mb-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Calle, número, ciudad" required>
+                        <label for="direccion" class="form-label">Dirección de entrega</label>
+                    </div>
+                </div>
+
+                <!-- Confirmar dirección -->
+                <div class="col-md-6 mb-3">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" name="confirmar_direccion" id="confirmar_direccion" placeholder="Confirma la dirección" required>
+                        <label for="confirmar_direccion" class="form-label">Confirmar dirección</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🔹 Método de pago -->
+            <div class="mb-4">
+                <label for="metodo_pago" class="form-label fw-bold">Método de pago</label>
+                <select class="form-select" id="metodo_pago" name="metodo_pago" required>
+                    <option value="" disabled selected>Selecciona un método</option>
+                    <option value="Efectivo">Efectivo</option>
+                    <option value="Tarjeta de crédito">Tarjeta de crédito</option>
+                    <option value="Tarjeta de débito">Tarjeta de débito</option>
+                    <option value="Transferencia bancaria">Transferencia bancaria</option>
+                    <option value="Nequi / Daviplata">Nequi / Daviplata</option>
+                </select>
+            </div>
+
+            <!-- 🔸 Campos adicionales (solo si elige tarjeta) -->
+            <div id="tarjeta-info" style="display:none;">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="numero_tarjeta" class="form-label">Número de tarjeta</label>
+                        <input type="text" id="numero_tarjeta" class="form-control" placeholder="0000 0000 0000 0000" maxlength="19">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="fecha_exp" class="form-label">Expira</label>
+                        <input type="text" id="fecha_exp" class="form-control" placeholder="MM/AA" maxlength="5">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <label for="cvv" class="form-label">CVV</label>
+                        <input type="text" id="cvv" class="form-control" placeholder="***" maxlength="3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total -->
+            <div class="total-box text-end fw-bold mt-3">
+                Total: ${{ "{:,.0f}".format(total) }}
+            </div>
+
+            <!-- Botón de pago -->
+            <div class="mt-4 text-end">
+                <button type="submit" class="btn btn-primary px-4">Pagar</button>
+            </div>
+        </form>
+    </div>
+    {% else %}
+    <p class="text-center fs-5 mt-4">No hay productos en el resumen</p>
+    {% endif %}
+</div>
+
+<!-- 🔸 Script para mostrar los campos de tarjeta solo si corresponde -->
+<script>
+document.getElementById('metodo_pago').addEventListener('change', function() {
+    const tarjetaInfo = document.getElementById('tarjeta-info');
+    if (this.value === 'Tarjeta de crédito' || this.value === 'Tarjeta de débito') {
+        tarjetaInfo.style.display = 'block';
+    } else {
+        tarjetaInfo.style.display = 'none';
+    }
+});
+</script>
+
+{% endblock %}

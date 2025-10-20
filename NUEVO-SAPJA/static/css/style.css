@@ -1,0 +1,689 @@
+.navbar {
+    /* color principal: verde esmeralda */
+    --emerald: #046a4f;
+    --emerald-contrast: #e6f8ef;
+    background-color: var(--emerald) !important;
+    border: none;
+    box-shadow: 0 2px 6px rgba(4, 40, 30, 0.08);
+    padding: 10px 20px;
+}
+
+/* Header moderno */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+    position: relative;
+    z-index: 100;
+}
+
+.left-section {
+    font-size: 0.9rem;
+    color: #046a4f;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background-color: #e6f8ef;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.left-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(4, 106, 79, 0.1);
+}
+
+
+.logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-section,
+.right-section {
+    display: flex;
+    flex-direction: column; /* Elementos uno debajo del otro */
+    align-items: flex-end;  /* Alinea a la derecha */
+    gap: 10px;
+}
+/* Ajusta el tamaño del logo */
+.logo img {
+    height: 300px;
+    width: auto;
+}
+
+.button {
+    padding: 5px 10px;
+    
+    color: rgb(4, 22, 2);
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+
+
+.search-bar {
+    padding: 5px;
+    border: 1px solid #fafafa;
+    border-radius: 5px;
+}
+
+.address {
+    font-size: 14px;
+}
+
+
+body {
+    background-color: #F3ECD8;
+    color: #07321f;
+}
+
+/* Navbar overrides for Bootstrap 5 */
+.navbar .navbar-brand {
+    color: #fff;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.navbar .navbar-toggler {
+    border-color: rgba(255,255,255,0.15);
+}
+
+.navbar .nav-link {
+    color: #ffffff !important;
+    margin-right: 0.25rem;
+    margin-left: 0.25rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 6px;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: #046a4f !important;
+    background: #ffffff !important;
+    text-decoration: none;
+}
+
+/* Badge styling */
+.badge.bg-secondary {
+    background-color: #ffffff !important;
+    color: #046a4f !important;
+    font-weight: 600;
+}
+
+/* pequeño ajuste responsive */
+@media (max-width: 767.98px) {
+    .navbar .nav-link { padding: 0.5rem 0.75rem; }
+    .navbar .navbar-brand { font-size: 1.05rem; }
+}
+
+/* Categories (collares, pulseras, etc.) */
+/* Full width category bar */
+.category-bar {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    background: #046a4f;
+    box-shadow: none;
+}
+
+.category-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    height: 44px;
+}
+
+.category-nav .nav-item {
+    list-style: none;
+    flex: 1 1 auto;
+    display: flex;
+    align-items: center; /* vertical center */
+    justify-content: center; /* horizontal center */
+    padding: 0;
+}
+.category-nav .category-pill {
+    display: block;
+    width: 100%;
+    padding: 10px 6px;
+    color: #fff !important;
+    font-weight: 600;
+    border-radius: 0;
+    text-align: center;
+}
+.category-nav .nav-item + .nav-item .category-pill { border-left: 1px solid rgba(255,255,255,0.12); }
+
+@media (max-width: 768px) {
+    .category-nav { flex-wrap: wrap; }
+    .category-nav .nav-item { flex: 0 0 33.333%; }
+    .category-nav .category-pill { padding: 8px 6px; font-size: 0.85rem; }
+}
+
+#carouselExampleSlidesOnly {
+    height: 500px;
+}
+
+#carouselExampleSlidesOnly .carousel-inner,
+#carouselExampleSlidesOnly .carousel-item,
+#carouselExampleSlidesOnly img {
+    height: 500px;
+}
+
+/* Solo afecta las imágenes del carrusel */
+#carouselExampleSlidesOnly img {
+    width: auto;
+    /* El ancho se ajusta automáticamente */
+    max-width: 150%;
+    /* No excede el ancho del contenedor */
+    height: 100%;
+    /* Ocupa todo el alto del carrusel */
+    object-fit: contain;
+    /* O usa 'cover' si prefieres recorte */
+    margin: 0;
+    /* Centra la imagen si es más angosta */
+    display: block;
+    border-radius: 10px;
+    background: linear-gradient(1900deg, #b4e1c5, #65d890);
+}
+
+/* Estilos para el catálogo */
+.card {
+    height: 100%;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
+    background: linear-gradient(190deg, #b4e1c5, #65d890);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.card-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #046a4f;
+    margin-bottom: 0.5rem;
+    height: 2.4rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.card-text.text-secondary {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+    height: 3.6rem;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.card-text strong {
+    font-size: 1.3rem;
+    color: #046a4f;
+}
+
+/* Estilos para el formulario de cantidad */
+.card form {
+    margin-top: auto;
+}
+
+.card input[type="number"] {
+    border: 2px solid #046a4f;
+    border-radius: 5px;
+    padding: 0.5rem;
+    margin: 0 auto;
+    display: block;
+}
+
+.card button[type="submit"] {
+    border: none;
+    padding: 0.8rem;
+    border-radius: 5px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.card .btn-success {
+    background-color: #046a4f;
+}
+
+.card .btn-success:hover {
+    background-color: #034a37;
+    transform: scale(1.02);
+}
+
+.card .text-danger {
+    color: #dc3545;
+    font-weight: 600;
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.card .text-muted {
+    text-align: center;
+    font-size: 0.9rem;
+    margin: 0.5rem 0;
+}
+
+/* Estilos para el modal */
+.modal-content {
+    border-radius: 15px;
+    border: none;
+}
+
+.modal-header {
+    background-color: #046a4f;
+    color: white;
+    border-radius: 15px 15px 0 0;
+}
+
+.modal-title {
+    color: white !important;
+}
+
+.modal-body img {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.modal-body img:hover {
+    transform: scale(1.02);
+}
+
+/* Estilos para el buscador */
+.search-container {
+    max-width: 350px;
+    margin: 1rem 0;
+}
+
+.search-container .form-control {
+    border: 2px solid #046a4f;
+    border-radius: 25px;
+    padding: 0.8rem 1.2rem;
+    transition: box-shadow 0.3s ease;
+}
+
+.search-container .form-control:focus {
+    box-shadow: 0 0 0 0.2rem rgba(4, 106, 79, 0.25);
+    border-color: #046a4f;
+}
+
+.search-container .btn-outline-dark {
+    border-radius: 25px;
+    padding: 0.8rem 1.5rem;
+    border: 2px solid #046a4f;
+    color: #046a4f;
+    font-weight: 600;
+}
+
+.search-container .btn-outline-dark:hover {
+    background-color: #046a4f;
+    color: white;
+}
+
+
+.btn-whatsapp {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #046a4f;
+    color: #fff;
+    border-radius: 50%;
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.2s;
+}
+
+.btn-whatsapp:hover {
+    transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(4,106,79,0.18);
+}
+
+/* Icon size inside whatsapp button */
+.btn-whatsapp i {
+    font-size: 2.2rem;
+    color: #fff;
+    line-height: 1;
+}
+
+.carrito-view .tabla_carrito img{
+    border-radius: 6px;
+    box-shadow: 0 0 0 5px rgb(0,0,0,0.1);
+}
+
+.carrito-view .total-box{
+    margin-top: 20px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    font-size: 1.3em;
+    font-weight:bold;
+    color:#046a4f;
+    box-shadow: 0 1px 6px rgba(4, 40, 30, 0.1);
+    
+}
+
+.carrito-view .btn{
+    display: inline-block;
+    padding: 8px 14px;
+    margin: 5px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0,9em;
+    transition: 0.2s;
+}
+
+.carrito-view.btndanger{
+    background: rgb(211, 44, 44);
+    color:white
+}
+
+.carrito-view .btn-danger:hover{
+    background: #eba3c4;
+}
+
+.carrito-view .btn-warning {
+    background-color: #f1943d;
+}
+
+.carrito-view .btn-danger:hover{
+    background: #ffe48a;
+}
+
+
+.carrito-view .btn-succes{
+    background: #2eec15;
+}
+
+
+.carrito-view .btn-success:hover{
+    background: #b2eba3;
+}
+
+.carrito-view .tabla_carrito{
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'segoe UI',sans-serif;
+    margin-top: 20px;
+    background: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.carrito-view .tabla-carrito th,
+.carrito-view .tabla-carrito td{
+    padding: 14px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.carrito-view .tabla-carrito th{
+    background-color: aqua;
+    color: wheat;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.carrito-view .tabla-carrito tr:hover{
+    background-color: #07321f;
+}
+
+
+/* === FACTURA === */
+
+.factura-body {
+    background-color: #f4f6f8;
+    color: #333;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.factura-container {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+
+.factura-container h1 {
+    text-align: center;
+    color: #046a4f;
+    border-bottom: 3px solid #046a4f;
+    padding-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.direccion {
+    background-color: #e6f8ef;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 25px;
+    border-left: 4px solid #046a4f;
+}
+
+.direccion strong {
+    color: #046a4f;
+}
+
+.factura-tabla {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 25px;
+}
+
+.factura-tabla th, 
+.factura-tabla td {
+    text-align: center;
+    padding: 12px;
+}
+
+.factura-tabla th {
+    background-color: #046a4f;
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.factura-tabla tr:nth-child(even) {
+    background-color: #f2f6fa;
+}
+
+.factura-tabla tr:hover {
+    background-color: #dff7e8;
+}
+
+.total {
+    text-align: right;
+    font-size: 18px;
+    font-weight: bold;
+    color: #046a4f;
+    margin-top: 10px;
+}
+
+.volver {
+    display: inline-block;
+    margin-top: 20px;
+    text-decoration: none;
+    background-color: #046a4f;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.volver:hover {
+    background-color: #034a37;
+}
+
+.sin-productos {
+    text-align: center;
+    color: #888;
+    font-style: italic;
+}
+
+/* ===== Toque moderno para el index ===== */
+
+/* Header responsive y elegante */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 18px 36px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(4,40,30,0.06);
+    margin: 18px;
+}
+
+/* Logo más compacto y centrado */
+.logo img {
+    max-height: 90px;
+    width: auto;
+    display: block;
+    object-fit: contain;
+    transition: transform .25s ease;
+}
+.logo img:hover { transform: scale(1.02); }
+
+/* Formulario de búsqueda en header */
+header form {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+header form input[type="text"] {
+    border: 2px solid #e9f5ef;
+    padding: 10px 14px;
+    border-radius: 30px;
+    width: 260px;
+    transition: box-shadow .2s ease, border-color .2s ease;
+}
+header form input[type="text"]:focus {
+    outline: none;
+    border-color: #046a4f;
+    box-shadow: 0 4px 14px rgba(4,106,79,0.12);
+}
+header form button {
+    background: #046a4f;
+    color: #fff;
+    border: none;
+    padding: 9px 14px;
+    border-radius: 30px;
+    font-weight: 700;
+}
+
+/* Ajustes mobile para header */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px;
+        margin: 8px;
+    }
+    header form input[type="text"] { width: 100%; }
+}
+
+/* Mejora del carrusel (no recortar imágenes) */
+#carouselExampleSlidesOnly {
+    height: auto; /* dejar que el alto se adapte según la imagen */
+    min-height: 320px;
+    max-height: 560px;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#carouselExampleSlidesOnly .carousel-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#carouselExampleSlidesOnly img {
+    width: auto;
+    max-width: 100%;
+    max-height: 560px; /* evita que la imagen crezca demasiado */
+    object-fit: contain; /* no recorta, mantiene la imagen completa */
+    transition: transform .6s ease;
+    display: block;
+    margin: 0 auto;
+}
+
+#carouselExampleSlidesOnly .carousel-item.active img { transform: none; }
+
+/* Sección sobre nosotros */
+#sobre-nosotros {
+    padding: 70px 0;
+    background: linear-gradient(135deg, #f8fff9 0%, #ffffff 100%);
+}
+#sobre-nosotros .col-lg-8 {
+    background: rgba(255,255,255,0.95);
+    padding: 28px;
+    border-radius: 14px;
+    box-shadow: 0 8px 24px rgba(4,106,79,0.06);
+}
+
+/* Pequeño card-style para la intro del index (si quieres destacar 3 items) */
+.index-features {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+.index-features .feature {
+    background: #fff;
+    padding: 18px;
+    border-radius: 12px;
+    width: 260px;
+    text-align: center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+.index-features .feature h4 { color: #046a4f; }
+
+/* Limpieza del bloque inline (si queda): evitar conflictos */
+#sobre-nosotros style,
+header style { display: none; }
+

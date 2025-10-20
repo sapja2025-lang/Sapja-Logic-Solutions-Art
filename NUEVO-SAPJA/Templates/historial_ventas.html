@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}Historial de Ventas{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h3>Historial de ventas</h3>
+
+    <div class="text-end mb-3">
+        <a href="{{ url_for('historial_ventas_pdf') }}" class="btn btn-success">
+            📊 Descargar historial de ventas en PDF
+        </a>
+    </div>
+
+    {% if historial %}
+    <table class="table table-bordered table-hover mt-3">
+        <thead class="table-light">
+            <tr>
+                <th>ID Factura</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Total</th>
+                <th>Cantidad de Productos</th>
+                <th>Descripción</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for f in historial %}
+            <tr>
+                <td>{{ f.id_factura }}</td>
+                <td>{{ f.fecha }}</td>
+                <td>{{ f.cliente }}</td>
+                <td>${{ "{:,.0f}".format(f.total) }}</td>
+                <td>{{ f.cantidad_productos }}</td>
+                <td>{{ f.descripcion or 'Sin descripción' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p class="text-muted">No hay ventas registradas.</p>
+    {% endif %}
+</div>
+{% endblock %}

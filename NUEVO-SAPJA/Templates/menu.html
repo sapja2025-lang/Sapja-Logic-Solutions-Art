@@ -1,0 +1,76 @@
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('index') }}">Inicio</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+            aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+            <!-- Menú del lado izquierdo -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <!-- Catálogo (visible para todos) -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('catalogo') }}">Catálogo</a>
+                </li>
+
+                <!-- Enlace PQRF (visible para todos) -->
+                <li class="nav-item">
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSd8-N1Q0BtVFv73JQW6pJ98EwDfI3Y_Lg6lF2PAnPSNbadsbA/viewform"
+                        target="_blank" class="btn btn-success nav-link text-white px-3" style="margin-left: 10px;">
+                        📋 Diligenciar PQRF
+                    </a>
+                </li>
+
+                <!-- Opciones solo para administrador -->
+                {% if session.get('tipo_usuario') == 'admin' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('crud') }}">Administrar usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('inventario') }}">Inventario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('historial') }}">Historial de Ventas</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <!-- Menú del lado derecho -->
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                {% if session.get('usuario') %}
+                    <!-- Solo para usuarios normales -->
+                    {% if session.get('tipo_usuario') != 'admin' %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('historial') }}">Mis Compras</a>
+                        </li>
+                    {% endif %}
+
+                    <!-- Carrito visible para todos los usuarios con sesión -->
+                    <li class="nav-item d-flex align-items-center">
+                        <a class="nav-link position-relative" href="{{ url_for('carrito') }}">
+                            <i class="bi bi-cart-plus"></i> Carrito
+                        </a>
+                    </li>
+
+                    <!-- Saludo y cerrar sesión -->
+                    <li class="nav-item">
+                        <a class="nav-link fw-semibold" href="#">Hola, {{ session['usuario'] }}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-danger" href="{{ url_for('logout') }}">Cerrar sesión</a>
+                    </li>
+
+                {% else %}
+                    <!-- Si no hay sesión -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Iniciar sesión</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('registro') }}">Registrarse</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

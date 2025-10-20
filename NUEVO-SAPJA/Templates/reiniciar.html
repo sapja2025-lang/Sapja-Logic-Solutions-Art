@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block title %}Restablecer contraseña{% endblock %}
+
+{% block content %}
+<!-- Oculta el header, navbar y botones superiores -->
+<style>
+header, nav, .navbar, .topbar {
+  display: none !important;
+}
+body {
+  background-color: #f8f9fa;
+}
+</style>
+
+<section class="py-5">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <div class="text-center mb-4">
+              <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Roka Real" width="170">
+            </div>
+
+            <h2 class="text-center text-secondary mb-4">
+              Ingresa tu nueva contraseña
+            </h2>
+
+            <!-- Mostrar mensajes flash -->
+            {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                {% for msg in messages %}
+                  <div class="alert alert-warning alert-dismissible fade show text-center" role="alert">
+                    {{ msg }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                  </div>
+                {% endfor %}
+              {% endif %}
+            {% endwith %}
+
+            <form method="POST">
+              <div class="mb-3">
+                <label for="password" class="form-label">Nueva contraseña</label>
+                <input 
+                  type="password" 
+                  class="form-control" 
+                  id="password" 
+                  name="nueva_password" 
+                  placeholder="Ingresa tu nueva contraseña" 
+                  required>
+              </div>
+
+              <div class="mb-3">
+                <label for="confirma" class="form-label">Confirmar contraseña</label>
+                <input 
+                  type="password" 
+                  class="form-control" 
+                  id="confirma" 
+                  name="confirma" 
+                  placeholder="Confirma tu nueva contraseña" 
+                  required>
+              </div>
+
+              <div class="d-grid mt-4">
+                <button type="submit" class="btn btn-success btn-lg">
+                  Guardar nueva contraseña
+                </button>
+              </div>
+
+              <div class="text-center mt-3">
+                <a href="{{ url_for('login') }}" class="text-decoration-none">
+                  ← Volver al inicio de sesión
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
