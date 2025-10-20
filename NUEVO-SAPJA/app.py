@@ -20,10 +20,13 @@ from reportlab.pdfgen import canvas
 from io import BytesIO
 from flask import make_response
  
-app.config['MYSQL_HOST']= 'localhost' #servidor de base de datos
-app.config['MYSQL_USER']= 'root'#usuario por defecto
-app.config['MYSQL_PASSWORD']= ''
-app.config['MYSQL_DB']= 'sapjita'
+# Configuración de conexión MySQL (FreeSQLDatabase.com)
+app.config['MYSQL_HOST'] = 'sql10.freesqldatabase.com'
+app.config['MYSQL_USER'] = 'sql10803736'
+app.config['MYSQL_PASSWORD'] = '5xVlzmmRr1'
+app.config['MYSQL_DB'] = 'sql10803736'
+app.config['MYSQL_PORT'] = 3306
+
 
 mysql=MySQL(app) #inicializa la conexion a la base de datos
 
@@ -1056,4 +1059,5 @@ def historial_ventas_pdf():
 
                        
 if __name__ =="__main__": #verifica si el archivo se ejecuta directamente
+
     app.run(port=5000,debug=True) #permite ver errores detalladamente y recarga e servidor automaticamente cunado se hacen cambios
